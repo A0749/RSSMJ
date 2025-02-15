@@ -1,0 +1,212 @@
+
+.history-navbar, .bottom-navbar {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 10; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .tribes-navbar, .history-navbar, .bottom-navbar{
+    padding: 0.5rem 0;
+    font-family: 'Dosis';
+    text-transform: uppercase;
+    color: #fff;
+
+
+  }
+  
+  .history-navbar,
+  .top-nav {
+    top: 0;
+    border-bottom: 1px solid #555;
+  }
+  .tribes-navbar a,
+  .history-navbar a{
+    font-size: calc(min(12vh / 4)); 
+  }
+  .navbar-content{
+    width: 60%;
+  }
+  .navbar-ul{
+    display: flex;
+    margin-bottom: 0;
+   
+  }
+  .header-content a{
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .bottom-navbar{
+    transform: translateY(-150px);
+  transition: transform 0.5s ease; 
+
+
+  }
+  
+  .bottom-content {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    max-width: 100%; 
+    margin: 0 auto;
+  }
+  .bottom-content div{
+    flex: 1;
+  }
+.navigator{
+  display: flex;
+  justify-content: center;
+}
+.logo-main{
+  display: flex;
+  justify-content: end;
+}
+  .text-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: calc(min(12vh / 3.8)); 
+    line-height: 1.1;
+    max-width: 70%; 
+    transition: all 0.3s ease-in;
+  }
+
+
+
+  .logo-link img {
+    max-width: calc(min(100vh / 6)); 
+    height: auto;
+    display: flex;
+  }
+  .bread-lang{
+    display: flex;
+    width: 96%;
+    justify-content: space-between;
+    text-transform: capitalize;
+    font-family: 'Hind';
+    align-items: center;
+    font-size: 0.8rem;
+    position: absolute;
+    top: 11vh;
+    left: 2%;
+    right: 2%;
+    z-index: 100;
+    color: #e3e3e3;
+  }
+  .bread-lang span{
+    font-family: 'Hind';
+    font-size: 0.8rem;
+    color: #e3e3e3;
+  }
+.front-page #breadcrumb{
+  opacity: 0 !important;
+}
+.front-page .bread-lang{
+  top: 40% !important;
+}
+  
+  #lang{
+    cursor: pointer;
+    font-family: 'Hind';
+    font-size: 0.8rem;
+
+
+
+  }
+
+  @media (max-width: 768px) {
+    .bottom-content {
+      align-items: center;
+      text-align: center;
+    }
+
+    .text-link {
+      max-width: 100%;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .logo-link img {
+      max-width: 120px;
+    }
+  }
+
+
+#history-page .custom-menu-btn{
+  top: 18vh;
+  left: 2%;
+
+}
+  /* Style for Toggle Button */
+.custom-menu-btn {
+  position: absolute;
+  top: 10vh;
+  left: 2%;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+  color:#fff;
+  margin-top: 0.4rem;
+}
+
+/* Full-Screen Offcanvas */
+.custom-offcanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-200%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1050;
+}
+
+/* Show Menu */
+.custom-offcanvas.show {
+  transform: translateX(0);
+}
+
+/* Close Button */
+.custom-close-btn {
+  position: absolute;
+  top: 6vh;
+  right: 20px;
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Menu Links */
+.custom-menu {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.custom-menu li {
+  margin: 20px 0;
+  border-bottom: 1px solid #555;
+  width: 100%;
+}
+
+.custom-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  font-weight: 900;
+}

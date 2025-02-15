@@ -1,0 +1,70 @@
+@font-face {
+    font-family: 'Hind';
+    src: url('../assets/fonts/Hind/Hind-Light.ttf') format('truetype');
+
+}
+@font-face {
+    font-family: 'HindBold';
+    src: url('../assets/fonts/Hind/Hind-Bold.ttf') format('truetype');
+
+}
+body p{
+    font-family: 'Hind' !important;
+}
+body h1, h2{
+    font-family: 'HindBold' !important;
+
+}
+body  h3, h4{
+    font-family: 'Hind' !important;
+}
+body a{
+    font-family: 'Hind' !important;
+
+}
+#scroll-container #section-front .content h1 {
+    font-size: calc(min(80vh / 2.2, 77vw / 2.2)) !important;
+    padding-top: 8vh;
+    line-height: 100%;
+}
+.right-side-tribe h2 {
+ 
+    line-height: 140%;
+}
+.history-content-inner h3{
+    padding: 0 ;
+}
+#s-main-container .history-content-inner h2{
+    line-height: 100%;
+}
+ .header-content .tribal-museum-title p{
+   font-size: calc(min(100vh / 30)) !important;
+
+}
+
+.footer-content .museum-info .text-link {
+    font-size: calc(min(100vh / 25)) !important;
+    letter-spacing: normal;
+    line-height: 110%;
+    font-family: 'Hind';
+}
+
+
+@media (max-width: 431px) {
+
+    .header-content .tribal-museum-title p{
+        font-size: calc(min(100vh / 60)) !important;
+    }
+    .int-btn{
+        font-size: 12px;
+    }
+    #scroll-container #section-front .content h1{
+        font-size: calc(min(80vh / 2.8, 77vw / 2.8)) !important;
+        padding-top: 2vh !important;
+
+    }
+    .footer-content .museum-info .text-link {
+        font-size: calc(min(100vh / 32)) !important;
+    }
+
+}

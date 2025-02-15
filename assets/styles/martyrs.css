@@ -1,0 +1,83 @@
+.martyrs-container {
+  width: 80%;
+  margin: auto;
+  padding: 2rem 0;
+}
+
+.person-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px 0;
+  cursor: pointer;
+  background: #00000021;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+.person-card:hover {
+  background: #000000;
+}
+
+.name-origin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.origin {
+  font-size: 14px;
+  color: #999;
+  text-align: left;
+}
+
+.origin strong {
+  font-weight: bold;
+}
+
+.sources {
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 300;
+  margin-top: 10px;
+  color: #e3e3e3;
+  display: none; 
+}
+
+.description {
+  font-size: 14px;
+  color: #e3e3e3;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.person-card.active .description {
+  max-height: 100px; 
+  opacity: 1;
+  padding: 10px 0;
+}
+
+.person-card.active .sources {
+  display: block; 
+}
+#load-more {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+}
+
+#load-more:hover {
+  background: #c1b103;
+}
+
+#counter {
+  font-size: 1rem;
+  color: #f5f5f5;
+  margin-bottom: 20px;
+}

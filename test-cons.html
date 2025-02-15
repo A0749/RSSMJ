@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Comparison with Swiper</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .swiper-container {
+      width: 100%;
+      height: 100vh;
+    }
+
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .comparison-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-a,
+    .image-b {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-b {
+      clip-path: inset(0 50% 0 0); /* Initially half-hidden */
+    }
+
+    .draggable-handle {
+      position: absolute;
+      z-index: 20;
+      top: 0;
+      left: 50%;
+      width: 10px;
+      height: 100%;
+      background: white;
+      cursor: ew-resize;
+      transform: translateX(-50%);
+    }
+
+    /* Added styles for the Before/After buttons */
+    .before-after-btns {
+      position: absolute;
+      z-index: 15;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      transform: translateY(-50%);
+    }
+
+    .before-after-btns span {
+      font-size: 2rem;
+      color: white;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Swiper Container -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <!-- Slide 1 -->
+      <div class="swiper-slide">
+        <div class="comparison-container">
+          <img src="assets/images/conservation/1a.jpg" alt="Image A" class="image-a">
+          <img src="assets/images/conservation/1b.JPG" alt="Image B" class="image-b">
+          <div class="draggable-handle"></div>
+          <div class="before-after-btns">
+            <span>Before</span>
+            <span>After</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="swiper-slide">
+        <div class="comparison-container">
+          <img src="assets/images/conservation/1b.JPG" alt="Image A" class="image-a">
+          <img src="assets/images/conservation/1a.jpg" alt="Image B" class="image-b">
+          <div class="draggable-handle"></div>
+          <div class="before-after-btns">
+            <span>Before</span>
+            <span>After</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add more slides here if needed -->
+    </div>
+
+    <!-- Add pagination, navigation, etc., if desired -->
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+ const swiper = new Swiper('.swiper-container', {
+  loop: true, // Enable looping for continuous sliding
+  slidesPerView: 1, // Show only one comparison at a time
+  spaceBetween: 0, // No space between slides
+  simulateTouch: false, // Disable touch drag completely
+  touchEventsTarget: 'container', // Disable touch drag interactions
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev'
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+});
+
+document.querySelectorAll('.comparison-container').forEach(container => {
+  const handle = container.querySelector('.draggable-handle');
+  const imageB = container.querySelector('.image-b');
+
+  let isDragging = false;
+
+  // Disable Swiper's drag when handle is being dragged
+  handle.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    container.classList.add('dragging');
+    e.preventDefault(); // Prevent Swiper's default behavior
+  });
+
+  // Enable dragging after the mouse is released
+  window.addEventListener('mouseup', () => {
+    if (isDragging) {
+      isDragging = false;
+      container.classList.remove('dragging');
+    }
+  });
+
+  // Handling the dragging
+  window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+
+    const rect = container.getBoundingClientRect();
+    let xPos = e.clientX - rect.left;
+
+    if (xPos < 0) xPos = 0;
+    if (xPos > rect.width) xPos = rect.width;
+
+    const percentage = (xPos / rect.width) * 100;
+
+    handle.style.left = `${percentage}%`;
+    imageB.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+  });
+
+  // Prevent Swiper drag if we are already dragging the handle
+  swiper.container.addEventListener('touchmove', (e) => {
+    if (isDragging) {
+      e.stopPropagation();
+    }
+  });
+
+  // Also disable touch drag on mobile if handle is being dragged
+  handle.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    container.classList.add('dragging');
+    e.preventDefault();
+  });
+
+  window.addEventListener('touchend', () => {
+    if (isDragging) {
+      isDragging = false;
+      container.classList.remove('dragging');
+    }
+  });
+
+  window.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+
+    const rect = container.getBoundingClientRect();
+    let xPos = e.touches[0].clientX - rect.left;
+
+    if (xPos < 0) xPos = 0;
+    if (xPos > rect.width) xPos = rect.width;
+
+    const percentage = (xPos / rect.width) * 100;
+
+    handle.style.left = `${percentage}%`;
+    imageB.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+  });
+});
+
+
+  </script>
+</body>
+</html>
